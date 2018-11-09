@@ -6,12 +6,15 @@ var document = require('sketch/dom').getSelectedDocument()
 
 var selection = document.selectedLayers;
 
-function randomColor() {
-  return '#'+Math.floor(Math.random()*16777215).toString(16);
-}
-
-selection.forEach(layer => layer.style.fills = [
-  {
-    color: randomColor(),
-  },
-]);
+selection.forEach(layer => {
+  var hue = Math.random() * 256 - 1;
+  var saturation = 60;
+  var lightning = 40;
+  var alpha = 1;
+  var hsla = `hsla(${hue}, ${saturation}%, ${lightning}%, ${alpha})`;
+  layer.style.fills = [
+    {
+      color: hsla,
+    }
+  ]
+});
